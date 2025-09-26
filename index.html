@@ -16,18 +16,18 @@
             <div id="article-container" class="article-card">
                 <!-- 文章内容将在这里动态生成 -->
             </div>
-            <div id="hint-area" class="hint-box" onclick="toggleSentenceHint()">*</div>
+            <div id="hint-area" class="hint-box" onclick="toggleSentenceHint()">************</div>
             <div class="controls">
                 <button id="show-full" class="btn primary">显示完整文章</button>
                 <label>隐藏比例：<input type="range" id="hide-slider" min="0" max="100" value="0" step="5"> <span id="slider-value">0%</span></label>
                 <div>
                     <label>隐藏模式：</label>
-                    <input type="radio" id="random-mode" name="hide-mode" value="random" checked> 随机
-                    <input type="radio" id="uniform-mode" name="hide-mode" value="uniform"> 均匀
-                    <input type="radio" id="preserve-mode" name="hide-mode" value="preserve"> 保留首字
+                    <button id="random-btn" class="mode-btn active">随机</button>
+                    <button id="uniform-btn" class="mode-btn">均匀</button>
+                    <button id="preserve-btn" class="mode-btn">保留首字</button>
+                    <button id="alternate-btn" class="mode-btn">交替隐藏</button>
                 </div>
-                <button id="check-answers" class="btn success">检查答案</button>
-                <button id="show-original" class="btn danger">查看原文</button>
+                <!-- <button id="check-answers" class="btn success">检查答案</button> -->
             </div>
         </main>
     </div>
