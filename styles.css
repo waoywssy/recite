@@ -1,0 +1,138 @@
+/* 全局样式 */
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0;
+    color: #333;
+}
+
+p {
+    font-size: 1em;
+    color: #666;
+}
+
+/* 文章卡片 */
+.article-card {
+    background: #fafafa;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    line-height: 1.8;
+    font-size: 1.2em;
+    text-align: justify;
+}
+
+.hint-box {
+    background: #e9ecef;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    cursor: pointer;
+}
+
+.article-card span, .article-card input {
+    margin-right: 1px;
+}
+
+.sentence {
+    cursor: pointer;
+    border-bottom: 1px dashed #ccc;
+}
+
+.article-card input {
+    width: 25px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 1px;
+    font-size: 1em;
+    text-align: center;
+}
+
+/* 控制按钮 */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.primary { background: #007bff; color: white; }
+.secondary { background: #6c757d; color: white; }
+.success { background: #28a745; color: white; }
+.danger { background: #dc3545; color: white; }
+
+/* 滑块 */
+label {
+    font-size: 0.9em;
+    color: #555;
+}
+
+input[type="range"] {
+    margin: 0 5px;
+}
+
+/* 响应式 */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+    .article-card {
+        font-size: 1em;
+    }
+    .btn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+}
