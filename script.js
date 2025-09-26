@@ -32,7 +32,7 @@ let hiddenChars = [];
 // 最后点击的句子
 let lastSentence = '';
 // 隐藏模式：'random'(随机), 'uniform'(均匀), 'preserve'(保留首字), 'alternate'(交替)
-let hideMode = 'random';
+let hideMode = 'preserve';
 // 交替隐藏状态：0隐藏奇数，1隐藏偶数
 let alternateState = 0;
 
@@ -223,7 +223,7 @@ function hideChars(ratio) {
     if (hideMode === 'preserve') {
         let sentenceStart = 0;
         for (let i = 0; i < currentText.length; i++) {
-            if (['。','？','！','；','、','，'].includes(currentText[i])) {
+            if (['。','？','！','；','、','，',' '].includes(currentText[i])) {
                 // 找到句子中的第一个汉字，保留不隐藏
                 const sentence = currentText.substring(sentenceStart, i + 1);
                 for (let j = 0; j < sentence.length; j++) {
