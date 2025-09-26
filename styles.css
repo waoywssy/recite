@@ -1,4 +1,6 @@
 /* 全局样式 */
+@import url('https://fonts.loli.net/css2?family=LXGW+WenKai:wght@300;400;700&display=swap');
+
 body {
     font-family: Arial, sans-serif;
     background: #f5f5f5;
@@ -46,6 +48,7 @@ p {
     line-height: 1.8;
     font-size: 1.2em;
     text-align: justify;
+    font-family: 'LXGW WenKai', serif;
 }
 
 .hint-box {
