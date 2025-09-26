@@ -3,16 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>背诵课文 - 沁园春·长沙</title>
+    <title>背诵练习工具</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3.19.6/dist/index.js"></script>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>背诵练习：沁园春·长沙</h1>
-            <p>先完整阅读，然后逐步隐藏汉字来强化记忆。</p>
+            <h1>背诵练习工具</h1>
+            <p>输入任意文本，然后逐步隐藏汉字来强化记忆。</p>
         </header>
         <main>
+            <div class="text-input-section">
+                <div class="input-header">
+                    <label for="text-input">请输入要背诵的文本：</label>
+                    <button id="toggle-input" class="btn secondary">隐藏输入区</button>
+                </div>
+                <div id="input-area">
+                    <textarea id="text-input" placeholder="在此输入您要背诵的文本...默认为《沁园春·长沙》"></textarea>
+                    <div class="input-controls">
+                        <button id="load-text" class="btn primary">加载文本</button>
+                        <button id="load-default" class="btn secondary">加载默认文本</button>
+                    </div>
+                </div>
+            </div>
             <div id="article-container" class="article-card">
                 <!-- 文章内容将在这里动态生成 -->
             </div>
@@ -27,7 +41,6 @@
                     <button id="preserve-btn" class="mode-btn">保留首字</button>
                     <button id="alternate-btn" class="mode-btn">交替隐藏</button>
                 </div>
-                <!-- <button id="check-answers" class="btn success">检查答案</button> -->
             </div>
         </main>
     </div>

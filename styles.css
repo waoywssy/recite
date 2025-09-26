@@ -39,6 +39,62 @@ p {
     color: #666;
 }
 
+/* 文本输入区域 */
+.text-input-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border: 1px solid #dee2e6;
+    transition: all 0.3s ease;
+}
+
+.input-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.text-input-section label {
+    font-weight: bold;
+    color: #495057;
+    margin: 0;
+}
+
+#input-area {
+    transition: all 0.3s ease;
+}
+
+#input-area.hidden {
+    display: none;
+}
+
+#text-input {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1em;
+    font-family: 'LXGW WenKai', serif;
+    line-height: 1.6;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+#text-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.input-controls {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
 /* 文章卡片 */
 .article-card {
     background: #fafafa;
