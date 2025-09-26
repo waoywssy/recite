@@ -107,10 +107,25 @@ rt {
     justify-content: center;
 }
 
-.controls div {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+.mode-btn {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    background: #f8f9fa;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9em;
+    transition: all 0.2s;
+    margin: 0 2px;
+}
+
+.mode-btn:hover {
+    background: #e9ecef;
+}
+
+.mode-btn.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
 }
 
 .btn {

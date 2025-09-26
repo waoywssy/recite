@@ -24,6 +24,7 @@ const pinyinMap = {
 let hiddenChars = []; // 存储隐藏的字符索引
 let lastSentence = ''; // 最后点击的句子
 let hideMode = 'random'; // 隐藏模式
+let alternateState = 0; // 交替隐藏状态：0隐藏奇数，1隐藏偶数
 
 // 初始化页面
 document.addEventListener('DOMContentLoaded', () => {
@@ -39,14 +40,38 @@ function bindEvents() {
         const ratio = parseInt(value) / 100;
         hideChars(ratio);
     });
-    document.getElementById('random-mode').addEventListener('change', () => { hideMode = 'random'; });
-    document.getElementById('uniform-mode').addEventListener('change', () => { hideMode = 'uniform'; });
-    document.getElementById('preserve-mode').addEventListener('change', () => { hideMode = 'preserve'; });
+    document.getElementById('random-btn').addEventListener('click', () => { setMode('random'); });
+    document.getElementById('uniform-btn').addEventListener('click', () => { setMode('uniform'); });
+    document.getElementById('preserve-btn').addEventListener('click', () => { setMode('preserve'); });
+    document.getElementById('alternate-btn').addEventListener('click', () => { setMode('alternate'); });
     document.getElementById('check-answers').addEventListener('click', checkAnswers);
     document.getElementById('show-original').addEventListener('click', showOriginal);
 }
 
-// 显示完整文章
+// 设置模式
+function setMode(mode) {
+    if (hideMode === mode && mode === 'alternate') {
+        // 如果已经是alternate，切换状态
+        alternateState = (alternateState + 1) % 2;
+    } else {
+        hideMode = mode;
+        if (mode === 'alternate') {
+            alternateState = 0; // 重置
+        }
+    }
+    // 更新按钮样式
+    document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+    const btnId = mode + '-btn';
+    document.getElementById(btnId).classList.add('active');
+    updateDisplay();
+}
+// 更新显示
+function updateDisplay() {
+    const slider = document.getElementById('hide-slider');
+    const ratio = parseInt(slider.value) / 100;
+    hideChars(ratio);
+}
+
 function displayFullText() {
     const container = document.getElementById('article-container');
     container.innerHTML = originalText.split('').map(char => {
@@ -128,12 +153,17 @@ function displayTextWithBlanks() {
     const container = document.getElementById('article-container');
     let html = '';
     let sentenceStart = 0;
+    let sentenceIndex = 0;
     for (let i = 0; i < originalText.length; i++) {
         if (['。','？','！','；','、','，'].includes(originalText[i])) {
             const sentence = originalText.substring(sentenceStart, i + 1);
+            const shouldHideSentence = hideMode === 'alternate' && sentenceIndex % 2 === alternateState;
             const sentenceHtml = sentence.split('').map((char, idx) => {
                 const globalIdx = sentenceStart + idx;
-                if (hiddenChars.includes(globalIdx)) {
+                if (hiddenChars.includes(globalIdx) || (shouldHideSentence && /[\u4e00-\u9fff]/.test(char))) {
+                    if (shouldHideSentence && /[\u4e00-\u9fff]/.test(char)) {
+                        hiddenChars.push(globalIdx);
+                    }
                     return `<input type="text" maxlength="1" data-index="${globalIdx}" onclick="showHint(this)">`;
                 }
                 if (/[\u4e00-\u9fff]/.test(char)) {
@@ -145,14 +175,20 @@ function displayTextWithBlanks() {
             }).join('');
             html += `<span class="sentence" onclick="showSentence(this)" data-original="${sentence.replace(/"/g, '&quot;')}">${sentenceHtml}</span>`;
             sentenceStart = i + 1;
+            sentenceIndex++;
         }
     }
     // 添加剩余部分
     if (sentenceStart < originalText.length) {
         const sentence = originalText.substring(sentenceStart);
+        const sentenceIndexCurrent = sentenceIndex;
+        const shouldHideSentence = hideMode === 'alternate' && sentenceIndexCurrent % 2 === alternateState;
         const sentenceHtml = sentence.split('').map((char, idx) => {
             const globalIdx = sentenceStart + idx;
-            if (hiddenChars.includes(globalIdx)) {
+            if (hiddenChars.includes(globalIdx) || (shouldHideSentence && /[\u4e00-\u9fff]/.test(char))) {
+                if (shouldHideSentence && /[\u4e00-\u9fff]/.test(char)) {
+                    hiddenChars.push(globalIdx);
+                }
                 return `<input type="text" maxlength="1" data-index="${globalIdx}" onclick="showHint(this)">`;
             }
             if (/[\u4e00-\u9fff]/.test(char)) {
