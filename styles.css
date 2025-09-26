@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1200px;
     width: 100%;
     background: white;
     border-radius: 8px;
@@ -42,13 +42,31 @@ p {
 /* 文章卡片 */
 .article-card {
     background: #fafafa;
-    padding: 15px;
+    padding: 50px 30px 30px;
     border-radius: 6px;
     margin-bottom: 10px;
-    line-height: 1.8;
-    font-size: 1.2em;
+    line-height: 3.5;
+    font-size: 1.6em;
     text-align: justify;
     font-family: 'LXGW WenKai', serif;
+}
+
+/* 拼音样式 */
+ruby {
+    position: relative;
+    display: inline-block;
+    margin: 0 0.1em;
+}
+
+rt {
+    position: absolute;
+    top: -0.1em;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.45em;
+    color: #666;
+    white-space: nowrap;
+    font-family: Arial, sans-serif;
 }
 
 .hint-box {
